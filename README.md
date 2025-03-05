@@ -13,6 +13,10 @@ Before running the server, you need to set up the following environment variable
     # On Unix/macOS
     export GEMINI_API_KEY='your-api-key'
     ```
+  - Source your .bashrc file to apply changes:
+    ```bash
+    source ~/.bashrc
+    ```
 
 ### Running the Development Server
 
