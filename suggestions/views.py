@@ -1,8 +1,8 @@
+import os
 from django.http import JsonResponse
 from django.views import View
+from django.conf import settings
 
 class SuggestionsView(View):
-    # TODO: Implement the get method to retrieve request 
-    # parameters and fetch suggestions from a LLM call.
-    def get(self, request):
-        return JsonResponse({"message": "GET request received!"})
+    def post(self, request):
+        return JsonResponse({"message": "POST request received!"})
