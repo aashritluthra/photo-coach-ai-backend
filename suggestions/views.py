@@ -10,28 +10,23 @@ from django.utils.decorators import method_decorator
 from PIL import Image
 import io
 
-# Configure the Gemini API
-genai.configure(api_key=settings.GEMINI_API_KEY)
-model = genai.GenerativeModel('gemini-2.0-flash')  # Using vision model, can tweak if necessary
 
 # exempt this view from csrf protection
 @method_decorator(csrf_exempt, name='dispatch')
 class SuggestionsView(View):
-    # render the index.html template
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        genai.configure(api_key=settings.GEMINI_API_KEY)
+        self.model = genai.GenerativeModel('gemini-2.0-flash')
+
     def get(self, request):
         return render(request, 'suggestions/index.html')
 
     # handle the post request, currently only handles image processing, no text processing
     def post(self, request):
-        try:
-            if 'image' not in request.FILES:
-                return JsonResponse(
-                    {"error": "No image provided"}, 
-                    status=400
-                )
-            
-            # Get the uploaded image
-            image_file = request.FILES['image']
+        try:            
+            image_file = request.FILES.get('image') 
+            if not image_file: return JsonResponse({"error": "No image provided"}, status=400)
             
             # Convert the image to PIL Image
             image = Image.open(image_file)
@@ -50,7 +45,7 @@ class SuggestionsView(View):
             Example 2: "Lower the white balance a bit"""
             
             # Generate response using Gemini Vision
-            response = model.generate_content([prompt, image])
+            response = self.model.generate_content([prompt, image])
             
             return JsonResponse({
                 "suggestion": response.text
