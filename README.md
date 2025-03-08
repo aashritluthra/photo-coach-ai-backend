@@ -26,6 +26,12 @@ Before running the server, you need to set up the following environment variable
    venv\Scripts\activate      # On Windows
    ```
 
+2. Ensure the IP Address of the Machine which will be running this server is included in the `ALLOWED_HOSTS`
+of the `settings.py` file. This can be fetched by running the following command in the terminal:
+   ```bash
+   ipconfig getifaddr en0
+   ```
+
 2. Start the Django development server:
    ```bash
    python manage.py runserver 0.0.0.0:8000
