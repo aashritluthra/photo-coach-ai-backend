@@ -26,7 +26,7 @@ Before running the server, you need to set up the following environment variable
    venv\Scripts\activate      # On Windows
    ```
 
-2. Ensure the IP Address of the Machine which will be running this server is included in the `ALLOWED_HOSTS`
+2. Ensure the IP address of the machine which will be running this server is included in the `ALLOWED_HOSTS` list
 of the `settings.py` file. This can be fetched by running the following command in the terminal:
    ```bash
    ipconfig getifaddr en0
