@@ -28,9 +28,9 @@ Before running the server, you need to set up the following environment variable
 
 2. Start the Django development server:
    ```bash
-   python manage.py runserver
+   python manage.py runserver 0.0.0.0:8000
    ```
 
-3. The server will start at `http://127.0.0.1:8000/`
+3. The server will start at `http://0.0.0.0:8000/`
 
 Note: Make sure you have all dependencies installed and migrations applied before running the server.
