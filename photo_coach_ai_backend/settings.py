@@ -56,7 +56,7 @@ ROOT_URLCONF = 'photo_coach_ai_backend.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'suggestions', 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
